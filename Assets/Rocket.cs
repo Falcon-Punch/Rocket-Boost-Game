@@ -33,7 +33,10 @@ public class Rocket : MonoBehaviour {
 			case "Fuel":
 				print("Fuel");
 				break;
-
+			default:
+				print("Dead");
+				// Crash Rocket
+				break;
 		}
 	}
 
