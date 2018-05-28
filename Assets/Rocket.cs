@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Rocket : MonoBehaviour
@@ -35,6 +36,19 @@ public class Rocket : MonoBehaviour
 		{
 			RespondToThrustInput();
 			RespondToRotateInput();
+		}
+
+		if (Debug.isDebugBuild)
+		{
+			RespondToDebugKeys();
+		}
+	}
+
+	private void RespondToDebugKeys()
+	{
+		if (Input.GetKeyDown(KeyCode.L))
+		{
+			LoadNextLevel();
 		}
 	}
 
@@ -76,7 +90,15 @@ public class Rocket : MonoBehaviour
 
 	private void LoadNextLevel()
 	{
-		SceneManager.LoadScene(1); // todo allow for more than 2 levels
+		int currentScenceIndex = SceneManager.GetActiveScene().buildIndex;
+		int nextSceneIndex = currentScenceIndex + 1;
+
+		if (nextSceneIndex == SceneManager.sceneCountInBuildSettings)
+		{
+			nextSceneIndex = 0;
+		}
+
+		SceneManager.LoadScene(nextSceneIndex);
 	}
 
 	private void LoadFirstLevel()
