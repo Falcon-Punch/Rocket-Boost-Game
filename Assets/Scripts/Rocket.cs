@@ -76,7 +76,8 @@ public class Rocket : MonoBehaviour
 		audioSource.Stop();
 		audioSource.PlayOneShot(success);
 		successParticles.Play();
-		Invoke("LoadNextLevel", levelLoadDelay);
+		// You Passed!
+		Invoke("ReloadLevel", levelLoadDelay);
 	}
 
 	private void DeathSequence()
@@ -85,10 +86,11 @@ public class Rocket : MonoBehaviour
 		audioSource.Stop();
 		audioSource.PlayOneShot(death);
 		deathParticles.Play();
-		Invoke("LoadFirstLevel", levelLoadDelay);
+		// Load Game Over
+		Invoke("ReloadLevel", levelLoadDelay);
 	}
 
-	private void LoadNextLevel()
+	public void LoadNextLevel()
 	{
 		int currentScenceIndex = SceneManager.GetActiveScene().buildIndex;
 		int nextSceneIndex = currentScenceIndex + 1;
@@ -101,9 +103,10 @@ public class Rocket : MonoBehaviour
 		SceneManager.LoadScene(nextSceneIndex);
 	}
 
-	private void LoadFirstLevel()
+	private void ReloadLevel()
 	{
-		SceneManager.LoadScene(0);
+		int currentScenceIndex = SceneManager.GetActiveScene().buildIndex;
+		SceneManager.LoadScene(currentScenceIndex);
 	}
 	
 	private void RespondToThrustInput()
