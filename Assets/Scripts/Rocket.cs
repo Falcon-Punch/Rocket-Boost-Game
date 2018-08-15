@@ -7,6 +7,7 @@ public class Rocket : MonoBehaviour
 	[SerializeField] float rcsThrust = 100f;
 	[SerializeField] float mainThrust = 100f;
 	[SerializeField] float levelLoadDelay = 1f;
+	[SerializeField] int gameOverIndex = 8;
 
 	[SerializeField] AudioClip mainEngine;
 	[SerializeField] AudioClip success;
@@ -21,6 +22,20 @@ public class Rocket : MonoBehaviour
 
 	enum State { Alive, Dying, Transcending }
 	State state = State.Alive;
+	
+	private static int currentScenceIndex;
+
+	public int CurrentScenceIndex
+	{
+		get
+		{
+			return currentScenceIndex;
+		}
+		set
+		{
+			currentScenceIndex = value;
+		}
+	}
 
 	// Use this for initialization
 	void Start ()
@@ -42,6 +57,9 @@ public class Rocket : MonoBehaviour
 		{
 			RespondToDebugKeys();
 		}
+
+		if (state != State.Alive) { return; }
+		currentScenceIndex = SceneManager.GetActiveScene().buildIndex;
 	}
 
 	private void RespondToDebugKeys()
@@ -77,7 +95,7 @@ public class Rocket : MonoBehaviour
 		audioSource.PlayOneShot(success);
 		successParticles.Play();
 		// You Passed!
-		Invoke("ReloadLevel", levelLoadDelay);
+		Invoke("LoadNextLevel", levelLoadDelay);
 	}
 
 	private void DeathSequence()
@@ -86,13 +104,23 @@ public class Rocket : MonoBehaviour
 		audioSource.Stop();
 		audioSource.PlayOneShot(death);
 		deathParticles.Play();
-		// Load Game Over
-		Invoke("ReloadLevel", levelLoadDelay);
+		// You Died!
+		Invoke("LoadGameOver", levelLoadDelay);
+	}
+
+	public void ReloadLevel()
+	{
+		SceneManager.LoadScene(currentScenceIndex);
+	}
+
+	public void LoadGameOver()
+	{
+		SceneManager.LoadScene(gameOverIndex);
 	}
 
 	public void LoadNextLevel()
 	{
-		int currentScenceIndex = SceneManager.GetActiveScene().buildIndex;
+		currentScenceIndex = SceneManager.GetActiveScene().buildIndex;
 		int nextSceneIndex = currentScenceIndex + 1;
 
 		if (nextSceneIndex == SceneManager.sceneCountInBuildSettings)
@@ -101,12 +129,6 @@ public class Rocket : MonoBehaviour
 		}
 
 		SceneManager.LoadScene(nextSceneIndex);
-	}
-
-	private void ReloadLevel()
-	{
-		int currentScenceIndex = SceneManager.GetActiveScene().buildIndex;
-		SceneManager.LoadScene(currentScenceIndex);
 	}
 	
 	private void RespondToThrustInput()
@@ -148,7 +170,7 @@ public class Rocket : MonoBehaviour
 			transform.Rotate(-Vector3.forward * rotationThisFrame);
 		}
 
-		//resume physics control 
+		// Resume physics control 
 		rigidBody.freezeRotation = false;
 	}
 }
