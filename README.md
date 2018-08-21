@@ -26,7 +26,7 @@ will proceed to the next level.
 https://youtu.be/DTi6t2SdW_E
 
 # Play Game
-Game may take a few minutes to completely load up.
+Game may take a few minutes to completely load up (even after pressing Start Game).
 
 **Keys:**
 
@@ -34,4 +34,4 @@ Game may take a few minutes to completely load up.
 - **A** - rotate left
 - **D** - rotate right
 
-http://www.sharemygame.com/share/87c89686-386d-44e6-a0bc-27496b421cc8
+http://www.sharemygame.com/share/16d14ce1-3bfa-45cc-bdd1-f71c908d872f
