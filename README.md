@@ -26,12 +26,28 @@ will proceed to the next level.
 https://youtu.be/DTi6t2SdW_E
 
 # Play Game
+
+**Input Keys:**
+
+<table>
+  <tr>
+    <th>Key</th>
+    <th>Action</th>
+  </tr>
+  <tr>
+    <td>Space Bar</td>
+    <td>Ship Thrust</td>
+  </tr>
+  <tr>
+    <td>A</td>
+    <td>Rotate Left</td>
+  </tr>
+  <tr>
+    <td>D</td>
+    <td>Rotate Right</td>
+  </tr>
+</table>
+
 Game may take a few minutes to completely load up (even after pressing Start Game).
-
-**Keys:**
-
-- **Space** - ship thrust
-- **A** - rotate left
-- **D** - rotate right
 
 http://www.sharemygame.com/share/16d14ce1-3bfa-45cc-bdd1-f71c908d872f
