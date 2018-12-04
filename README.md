@@ -48,6 +48,3 @@ https://youtu.be/DTi6t2SdW_E
   </tr>
 </table>
 
-Game may take a few minutes to completely load up (even after pressing Start Game).
-
-http://www.sharemygame.com/share/16d14ce1-3bfa-45cc-bdd1-f71c908d872f
