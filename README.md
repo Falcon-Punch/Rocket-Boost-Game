@@ -1,4 +1,4 @@
-# UFO Boost Game
+# UFO Flight School Game
 This is my first attempt at making a game in Unity using C#. The game allows the
 player to control a UFO through 6 different levels of mazes that get increasingly
 more difficult. If the UFO touches anything but the beginning platform, the
